@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open Tasks Kanban</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Task command center</p>
+        <h1>Open Tasks Kanban</h1>
+        <p class="subtitle">Capture work, prioritize next steps, and move tasks from idea to done.</p>
+      </div>
+      <section class="stats" aria-label="Task summary">
+        <div><span id="totalTasks">0</span><small>Total</small></div>
+        <div><span id="openTasks">0</span><small>Open</small></div>
+        <div><span id="doneTasks">0</span><small>Done</small></div>
+      </section>
+    </header>
+
+    <main>
+      <section class="panel" aria-labelledby="new-task-title">
+        <div>
+          <p class="eyebrow">Quick add</p>
+          <h2 id="new-task-title">Create a task</h2>
+        </div>
+        <form id="taskForm" class="task-form">
+          <label>
+            Task title
+            <input id="taskTitle" name="title" type="text" placeholder="e.g. Draft project brief" required maxlength="80" />
+          </label>
+          <label>
+            Details
+            <textarea id="taskDetails" name="details" placeholder="Notes, acceptance criteria, or context" maxlength="220"></textarea>
+          </label>
+          <div class="form-row">
+            <label>
+              Priority
+              <select id="taskPriority" name="priority">
+                <option>High</option>
+                <option selected>Medium</option>
+                <option>Low</option>
+              </select>
+            </label>
+            <label>
+              Due date
+              <input id="taskDue" name="due" type="date" />
+            </label>
+            <button type="submit">Add task</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="toolbar" aria-label="Board tools">
+        <label>
+          Search tasks
+          <input id="searchInput" type="search" placeholder="Filter by title or details" />
+        </label>
+        <button id="clearDone" type="button">Clear done tasks</button>
+      </section>
+
+      <section id="board" class="board" aria-label="Kanban board"></section>
+    </main>
+
+    <template id="columnTemplate">
+      <article class="column">
+        <header>
+          <div>
+            <p class="eyebrow"></p>
+            <h2></h2>
+          </div>
+          <span class="count">0</span>
+        </header>
+        <div class="task-list"></div>
+      </article>
+    </template>
+
+    <template id="taskTemplate">
+      <article class="task-card" draggable="true">
+        <div class="task-card__top">
+          <span class="priority"></span>
+          <button class="delete-task" type="button" aria-label="Delete task">×</button>
+        </div>
+        <h3></h3>
+        <p class="details"></p>
+        <div class="task-meta"></div>
+        <div class="task-actions"></div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
